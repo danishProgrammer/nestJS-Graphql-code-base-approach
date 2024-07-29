@@ -1,0 +1,50 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""customer"""
+type Customer {
+  customerId: ID!
+  name: String!
+  address: String!
+  contact: Float!
+  userName: String!
+  password: String!
+}
+
+"""account"""
+type Account {
+  accountId: ID!
+  customerId: Customer!
+  balance: Int!
+  accountType: AccountType!
+}
+
+enum AccountType {
+  SAVINGS
+  CURRENT
+}
+
+type Query {
+  getCustomerById(customerId: String!): Customer!
+  getAccountDetails(customerId: String!, accountId: String!): Account!
+}
+
+type Mutation {
+  newCustomer(newCustomerDTO: NewCustomerDTO!): Customer!
+  newAccount(newAccountDTO: NewAccountDTO!): Account!
+}
+
+input NewCustomerDTO {
+  name: String!
+  address: String!
+  contact: Int!
+  userName: String!
+  password: String!
+}
+
+input NewAccountDTO {
+  customerId: String!
+  balance: Int!
+  accountType: AccountType!
+}

@@ -1,0 +1,59 @@
+
+
+type Query {
+  getCustomerById(id: String!): Customer!
+}
+
+type Customer {
+  customerId: ID!
+  name: String!
+  address:String
+  contact:Int!
+  userName:String!
+  password:String!
+  account:Account!
+  beneficiary: Beneficiary
+}
+
+  
+type Account{
+    accountId: ID!
+    customerId:Customer!
+    Balance:Int
+    accountType: AccountType!
+    transaction: Transaction 
+}
+
+enum AccountType{
+    SAVINGS
+    CURRENT
+}
+
+
+type Beneficiary{
+    beneficiaryId: ID!
+    customerId: Customer!
+    accountNumber:Account
+    benefits:[String]
+}
+ 
+type Transaction{
+    transactionId: ID!
+    amount:Int!
+    accountId: Account!
+    accountType:AccountType!
+    timestamp:DateTime!
+}
+
+scalar DateTime
+
+
+type Mutation {
+  newUser(newUserDTO: NewUserDTO!): User!
+}
+
+input NewUserDTO {
+  firstName: String!
+  lastName: String!
+  age: Int!
+}
